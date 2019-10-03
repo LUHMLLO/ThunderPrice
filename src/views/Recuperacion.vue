@@ -9,7 +9,7 @@
    <br>
 
    <div class="field-wrapper">
-        <input type="email" required>
+        <input type="email" required v-model="emailAddress">
         <label>
             <span>
                 <i class='uil uil-envelope-alt'></i>
@@ -39,16 +39,15 @@ export default {
     name:'logeo',
     data(){
       return{
-            
+            emailAddress:'',
       }
     },
 
     methods:{
       
         Funcion_Recuperacion: function(){
-        let emailAddress = this.email
-        firebase.auth().sendPasswordResetEmail(emailAddress).then(function() {
-            Swal({ title: "Check your email!" , text: "we sent you an email with the steps to recover your account", icon: "success"})
+        firebase.auth().sendPasswordResetEmail(this.emailAddress).then(function() {
+            Swal({ title: "Verifica tu correo" , text: "Hemos enviado un link a tu correo para recuperar tu clave", icon: "success"})
             }).catch(function(error) {
             Swal({ title: "Oops !", text: error.message, icon: "error"})
             });
