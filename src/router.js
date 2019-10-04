@@ -10,17 +10,17 @@ export default new Router({
     {
       path: '/logeo',
       name: 'logeo',
-      component: () => import(/* webpackChunkName: "logeo" */ './views/Logeo.vue')
+      component: () => import(/* webpackChunkName: "logeo" */ './views/formularios/Logeo.vue')
     },
     {
       path: '/registro',
       name: 'registro',
-      component: () => import(/* webpackChunkName: "registro" */ './views/Registro.vue')
+      component: () => import(/* webpackChunkName: "registro" */ './views/formularios/Registro.vue')
     },
     {
       path: '/recuperacion',
       name: 'recuperacion',
-      component: () => import(/* webpackChunkName: "recuperacion" */ './views/Recuperacion.vue')
+      component: () => import(/* webpackChunkName: "recuperacion" */ './views/formularios/Recuperacion.vue')
     }
   ]
 })

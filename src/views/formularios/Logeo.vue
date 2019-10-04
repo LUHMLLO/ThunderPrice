@@ -43,7 +43,7 @@
 
 
 <script>
-import firebase from '../firebase.js'
+import firebase from '../../firebase.js'
 import Swal from 'sweetalert';
 export default {
     name:'logeo',
