@@ -8,6 +8,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/',
+      name: 'inicio',
+      component: () => import(/* webpackChunkName: "logeo" */ './views/Inicio.vue')
+    },
+    {
       path: '/logeo',
       name: 'logeo',
       component: () => import(/* webpackChunkName: "logeo" */ './views/formularios/Logeo.vue')
