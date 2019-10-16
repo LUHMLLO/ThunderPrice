@@ -80,7 +80,7 @@
 									<span class="fa fa-location-arrow"></span>
 									Head Office
 								</p>
-								<p>123, Main Street, Your City</p>
+								<p>123, Main Street, Santiago de los Caballeros</p>
 	
 								<p class="sm-head">
 									<span class="fa fa-phone"></span>
