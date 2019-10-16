@@ -110,9 +110,10 @@
           <h2>Best <span class="section-intro__style">Sellers</span></h2>
         </div>
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
+
+          <div class="card text-center card-product" v-for="(Producto , index) in Productos_MasVendidos" v-bind:key="index">
             <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product1.png" alt="">
+              <img class="img-fluid" v-bind:src="Producto.Imagen" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button><i class="ti-search"></i></button></li>
                 <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -120,123 +121,14 @@
               </ul>
             </div>
             <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <p>{{Producto.Categoria}}</p>
+              <h4 class="card-product__title"><a href="single-product.html">{{Producto.Nombre}}</a></h4>
+              <p class="card-product__price">${{Producto.Precio}}</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="../assets/img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
+   
         </div>
       </div>
     </section>
@@ -335,6 +227,13 @@ export default {
         return{
             usuario: null,
             Productos_Populares:[],
+            Productos_MasVendidos:[
+              {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
+              {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
+              {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
+              {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
+              {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
+            ],
         }
     },
 
@@ -382,8 +281,11 @@ export default {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+  computed: {
+    Productos_Populares_Filter() {
+      return this.Productos_Populares
+    }
+  },
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
