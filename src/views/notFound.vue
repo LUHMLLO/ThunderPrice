@@ -1,5 +1,5 @@
-<template class="centering-body">
-<div class="centering-body">
+<template class="">
+<div class="">
 
   <!-- ================ start banner area ================= -->	
 	<section class="blog-banner-area" id="category">

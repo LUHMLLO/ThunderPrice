@@ -1,5 +1,5 @@
 <template>
-<div class="centering-body">
+<div class="">
 
  
 

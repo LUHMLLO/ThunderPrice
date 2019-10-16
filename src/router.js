@@ -32,6 +32,11 @@ export default new Router({
       path: '/recovery',
       name: 'recovery',
       component: () => import(/* webpackChunkName: "recovery" */ './views/Recovery.vue')
-    }
+    },
+    {
+      path: '/producto/:Producto_id',
+      name: 'producto',
+      component: () => import(/* webpackChunkName: "producto" */ './views/Producto_detalle.vue')
+    },
   ]
 })

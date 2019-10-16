@@ -2,10 +2,11 @@
   <div>
 
 
+
     <!-- ================ Subscribe section start ================= --> 
     <section class="subscribe-position">
       <div class="container">
-        <div class="subscribe text-center shadow">
+        <div class="subscribe text-center">
           <h3 class="subscribe__title">Get Update From Anywhere</h3>
           <p>Bearing Void gathering light light his eavening unto dont afraid</p>
           <div id="mc_embed_signup">
@@ -26,7 +27,6 @@
       </div>
     </section>
     <!-- ================ Subscribe section end ================= --> 
-
 
 
   <!--================ Start footer Area  =================-->	
