@@ -8,24 +8,30 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      name: 'notFound',
+      component: () => import(/* webpackChunkName: "notFound" */ './views/notFound.vue')
+    },
+    {
       path: '/',
+      alias: '/inicio',
       name: 'inicio',
       component: () => import(/* webpackChunkName: "logeo" */ './views/Inicio.vue')
     },
     {
-      path: '/logeo',
-      name: 'logeo',
-      component: () => import(/* webpackChunkName: "logeo" */ './views/formularios/Logeo.vue')
+      path: '/login',
+      name: 'login',
+      component: () => import(/* webpackChunkName: "login" */ './views/Login.vue')
     },
     {
-      path: '/registro',
-      name: 'registro',
-      component: () => import(/* webpackChunkName: "registro" */ './views/formularios/Registro.vue')
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "register" */ './views/Register.vue')
     },
     {
-      path: '/recuperacion',
-      name: 'recuperacion',
-      component: () => import(/* webpackChunkName: "recuperacion" */ './views/formularios/Recuperacion.vue')
+      path: '/recovery',
+      name: 'recovery',
+      component: () => import(/* webpackChunkName: "recovery" */ './views/Recovery.vue')
     }
   ]
 })

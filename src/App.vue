@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <BarraDeNavegacion/>
+    <router-view class="site-main"/>
+    <PieDePagina/>
   </div>
 </template>
 
@@ -10,7 +12,14 @@
 
 
 <script>
+
+//        ../../public/
+
 export default {
+  components:{
+    BarraDeNavegacion: () => import('./components/Navegacion.vue'),
+    PieDePagina: () => import('./components/Footer.vue'),
+  },
   data(){
     return{
 
@@ -19,13 +28,3 @@ export default {
 }
 </script>
 
-
-
-
-
-
-<style>
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
-@import url("https://unicons.iconscout.com/release/v1.0.0/css/unicons.css");
-@import url("./assets/style.css");
-</style>
