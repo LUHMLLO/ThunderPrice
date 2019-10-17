@@ -73,7 +73,7 @@
               </div>
               <div class="card-body">
                 <p>{{Producto.Categoria}}</p>
-                <h4 class="card-product__title"><router-link v-bind:to="{name:'producto',params:{Producto_id:Producto.id}}">{{Producto.Nombre}}</router-link></h4>
+                <h4 class="card-product__title"><router-link v-bind:to="{name: 'producto', params:{Producto_id:Producto.id}}">{{Producto.Nombre}}</router-link></h4>
                 <p class="card-product__price">${{Producto.Precio}}</p>
               </div>
             </div>

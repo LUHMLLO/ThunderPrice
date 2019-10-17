@@ -10,9 +10,9 @@
 <div class="product_image_area">
 <div class="container">
     <div class="row s_product_inner">
-        <div class="col-lg-6">
-            <div style="padding:10px; position:relative; width:100%; height:582px">
-                <img class="img-fluid" v-bind:src="Imagen" style="object-fit:cover !important; width:100% !important; height: 100% !important; position:absolute; top:0;right:0;bottom:0;left:0;margin:auto !important;">
+        <div class="col-lg-6 d-flex justify-content-center align-items-center">
+            <div style="padding:10px; position:relative; width:100%; margin:auto !important;">
+                <img class="img-fluid" v-bind:src="Imagen" style="min-width:100%;max-width:100%; object-fit:cover !important; margin:auto !important;">
             </div>
         </div>
         <div class="col-lg-5 offset-lg-1">
@@ -156,9 +156,9 @@ data(){
 },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 beforeRouteEnter(to, from, next){
-    db.collection('Productos').where('Producto_id','==', to.params.Producto_id).get().then(querySnapshot => {
+    db.collection('Productos').where('Producto_id','==',to.params.Producto_id).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
-                    console.log(doc.data())
+                    //console.log(doc.data())
             next(vm => {
                 vm.Producto_id = doc.data().Producto_id
                 vm.Nombre = doc.data().Nombre
@@ -177,9 +177,9 @@ watch: {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     methods: {
         fetchData(){
-            db.collection('Productos').where('Producto_id','==', this.$route.params.Producto_id).get().then(querySnapshot => {
+            db.collection('Productos').where('Producto_id','==',this.$route.params.Producto_id).get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
-                    console.log(doc.data())
+                    //console.log(doc.data())
                     this.Producto_id = doc.data().Producto_id
                     this.Nombre = doc.data().Nombre
                     this.Precio = doc.data().Precio

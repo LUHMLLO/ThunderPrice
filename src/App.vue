@@ -33,7 +33,7 @@ export default {
 
   import "./assets/vendors/bootstrap/bootstrap.bundle.min.js";
 
-  import "./assets/vendors/owl-carousel/owl.carousel.min.js";
+  import "./assets/vendors/owl-carousel/js/owl.carousel.js";
 
   import "./assets/vendors/skrollr.min.js";
 
@@ -59,8 +59,8 @@ export default {
 
     @import"./assets/vendors/nouislider/nouislider.min.css";
 
-    @import"./assets/vendors/owl-carousel/owl.theme.default.min.css";
-    @import"./assets/vendors/owl-carousel/owl.carousel.min.css";
+    @import"./assets/vendors/owl-carousel/scss/owl.theme.default.css";
+    @import"./assets/vendors/owl-carousel/scss/owl.carousel.css";
 
     
     @import"./assets/scss/style.css";
