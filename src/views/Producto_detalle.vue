@@ -6,130 +6,38 @@
 
 
 
-<!--================Single Product Area =================-->
-<div class="product_image_area">
-<div class="container">
-    <div class="row s_product_inner">
-        <div class="col-lg-6">
-            <div style="padding:10px; position:relative; width:100%; height:582px">
-                <img class="img-fluid" v-bind:src="Imagen" style="object-fit:cover !important; width:100% !important; height: 100% !important; position:absolute; top:0;right:0;bottom:0;left:0;margin:auto !important;">
-            </div>
-        </div>
-        <div class="col-lg-5 offset-lg-1">
-            <div class="s_product_text">
-                <h3>{{Nombre}}</h3>
-                <h2>${{Precio}}</h2>
-                <ul class="list mt-4">
-                    <li><a class="active" href="#"><span>Category</span>: {{Categoria}}</a></li>
-                    <li><a href="#"><span>Availibility</span> : In Stock</a></li>
-                </ul>
-                    
-                <div class="mt-4">
-                    <a class="button primary-btn" href="#">Add to Cart</a>               
-                </div>
+  <!--================Single Product Area =================-->
+	<div class="product_image_area">
+		<div class="container">
+			<div class="row s_product_inner">
+				<div class="col-lg-6">
+                    <div style="padding:10px; position:relative; width:100%; margin:auto !important;">
+                        <img class="img-fluid" v-bind:src="Imagen" style="min-width:100%;max-width:100%; object-fit:cover !important; margin:auto !important;">
+                    </div>
+				</div>
+				<div class="col-lg-5 offset-lg-1">
+					<div class="s_product_text">
+                    <h3>{{Nombre}}</h3>
+                    <h2>${{Precio}}</h2>
+						<ul class="list">
+                            <li><a class="active" href="#"><span>Category:</span>{{Categoria}}</a></li>
+							<li><a href="#"><span>Availibility:</span>In Stock</a></li>
+						</ul>
+                        <p>{{Descripcion}}</p>
+						<div class="product_count">
+							<a class="button primary-btn" href="#">Add to Cart</a>               
+						</div>
+						<div class="card_area d-flex align-items-center">
+							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--================End Single Product Area =================-->
 
-
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!--================End Single Product Area =================-->
-
-
-<!--================Product Description Area =================-->
-<section class="product_description_area">
-    <div class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                    aria-selected="false">Specification</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p>{{Descripcion}}</p>
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <h5>Width</h5>
-                                </td>
-                                <td>
-                                    <h5>128mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Height</h5>
-                                </td>
-                                <td>
-                                    <h5>508mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Depth</h5>
-                                </td>
-                                <td>
-                                    <h5>85mm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Weight</h5>
-                                </td>
-                                <td>
-                                    <h5>52gm</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Quality checking</h5>
-                                </td>
-                                <td>
-                                    <h5>yes</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Freshness Duration</h5>
-                                </td>
-                                <td>
-                                    <h5>03days</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>When packeting</h5>
-                                </td>
-                                <td>
-                                    <h5>Without touch of hand</h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Each Box contains</h5>
-                                </td>
-                                <td>
-                                    <h5>60pcs</h5>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        
-        </div>
-    </div>
-</section>
-<!--================End Product Description Area =================-->
 
 
 
@@ -156,9 +64,9 @@ data(){
 },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 beforeRouteEnter(to, from, next){
-    db.collection('Productos').where('Producto_id','==', to.params.Producto_id).get().then(querySnapshot => {
+    db.collection('Productos').where('Producto_id','==',to.params.Producto_id).get().then(querySnapshot => {
         querySnapshot.forEach(doc => {
-                    console.log(doc.data())
+                    //console.log(doc.data())
             next(vm => {
                 vm.Producto_id = doc.data().Producto_id
                 vm.Nombre = doc.data().Nombre
@@ -177,9 +85,9 @@ watch: {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     methods: {
         fetchData(){
-            db.collection('Productos').where('Producto_id','==', this.$route.params.Producto_id).get().then(querySnapshot => {
+            db.collection('Productos').where('Producto_id','==',this.$route.params.Producto_id).get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
-                    console.log(doc.data())
+                    //console.log(doc.data())
                     this.Producto_id = doc.data().Producto_id
                     this.Nombre = doc.data().Nombre
                     this.Precio = doc.data().Precio
@@ -191,5 +99,24 @@ watch: {
         }
     },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-}
+};
+  import "../assets/vendors/jquery/jquery-3.2.1.min.js";
+  import "../assets/vendors/bootstrap/bootstrap.bundle.min.js";
+  import "../assets/vendors/owl-carousel/js/owl.carousel.js";
+  import "../assets/vendors/skrollr.min.js";
+  import "../assets/vendors/nice-select/jquery.nice-select.min.js";
+  import "../assets/vendors/jquery.ajaxchimp.min.js";
+  import "../assets/vendors/mail-script.js";
+  import "../assets/js/main.js"; 
 </script>
+<style>
+    @import"../assets/vendors/bootstrap/bootstrap.min.css";
+    @import"../assets/vendors/fontawesome/css/all.min.css";
+    @import"../assets/vendors/themify-icons/themify-icons.css";
+    @import"../assets/vendors/linericon/style.css";
+    @import"../assets/vendors/nice-select/nice-select.css";
+    @import"../assets/vendors/nouislider/nouislider.min.css";
+    @import"../assets/vendors/owl-carousel/scss/owl.theme.default.css";
+    @import"../assets/vendors/owl-carousel/scss/owl.carousel.css";   
+    @import"../assets/scss/style.css";
+</style>
