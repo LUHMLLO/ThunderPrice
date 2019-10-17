@@ -6,7 +6,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <router-link class="navbar-brand logo_h" to="/inicio"><img src="img/logo2_logo.png" width="200"></router-link>
+          <router-link class="navbar-brand logo_h" to="/inicio"><img src="../assets/img/logo.png" width="200"></router-link>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
