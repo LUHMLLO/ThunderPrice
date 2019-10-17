@@ -11,18 +11,16 @@
 <div class="container">
     <div class="row s_product_inner">
         <div class="col-lg-6">
-            <div class="owl-carousel owl-theme s_Product_carousel">
-                <div class="single-prd-item">
-                    <img class="img-fluid" v-bind:src="this.Imagen" alt="">
-                </div>
+            <div style="padding:10px; position:relative; width:100%; height:582px">
+                <img class="img-fluid" v-bind:src="Imagen" style="object-fit:cover !important; width:100% !important; height: 100% !important; position:absolute; top:0;right:0;bottom:0;left:0;margin:auto !important;">
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 offset-lg-1">
             <div class="s_product_text">
-                <h3>Faded SkyBlu Denim Jeans</h3>
-                <h2>$149.99</h2>
+                <h3>{{Nombre}}</h3>
+                <h2>${{Precio}}</h2>
                 <ul class="list mt-4">
-                    <li><a class="active" href="#"><span>Category</span> : Household</a></li>
+                    <li><a class="active" href="#"><span>Category</span>: {{Categoria}}</a></li>
                     <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                 </ul>
                     
@@ -53,21 +51,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes
-                    and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
-                    Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to
-                    London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an
-                    officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a
-                    job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when
-                    showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a
-                    child’s painting set for her birthday and it was with this that she produced her first significant work, a
-                    half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly
-                    named ‘Hangover’ by Beryl’s husband and</p>
-                <p>It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing
-                    more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and
-                    the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for
-                    more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a
-                    streamlined plan of cooking that is more efficient for one person creating less</p>
+                <p>{{Descripcion}}</p>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">
@@ -165,55 +149,47 @@ data(){
         Producto_id: null,
         Imagen:null,
         Nombre:null,
+        Precio:null,
+        Categoria:null,
+        Descripcion:null,
     }
 },
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  beforeRouteEnter( to, from, next){        
-          db.collection('Productos').where('Producto_id' , '==' , to.params.Producto_id).get().then((querySnapshot) => {
-            querySnapshot.forEach(doc => {
-              next(vm => {
-                   // console.log(doc.data())
-                    vm.Nombre = doc.data().Nombre
-                    vm.Imagen = doc.data().Imagen
-
-              })
+beforeRouteEnter(to, from, next){
+    db.collection('Productos').where('Producto_id','==', to.params.Producto_id).get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+                    console.log(doc.data())
+            next(vm => {
+                vm.Producto_id = doc.data().Producto_id
+                vm.Nombre = doc.data().Nombre
+                vm.Precio = doc.data().Precio
+                vm.Imagen = doc.data().Imagen
+                vm.Categoria = doc.data().Categoria
+                vm.Descripcion = doc.data().Descripcion
             })
-          })
-    },
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-watch: {
-      '$route': 'WS3ChoolTutorialsfetchData'
+        })
+    })
 },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
+watch: {
+    '$router': 'fetchData'
+},
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     methods: {
-      WS3ChoolTutorialsfetchData (){
-        db.collection('services').where('Producto_id', '==' , this.$route.params.Producto_id).get().then(querySnapshot =>{
-          querySnapshot.forEach(doc => {
-              console.log(doc.data())
+        fetchData(){
+            db.collection('Productos').where('Producto_id','==', this.$route.params.Producto_id).get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    console.log(doc.data())
+                    this.Producto_id = doc.data().Producto_id
                     this.Nombre = doc.data().Nombre
+                    this.Precio = doc.data().Precio
                     this.Imagen = doc.data().Imagen
-
-          })
-        })
-      }
+                    this.Categoria = doc.data().Categoria
+                    this.Descripcion = doc.data().Descripcion
+                })
+            })
+        }
     },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 }
 </script>
