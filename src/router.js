@@ -44,7 +44,11 @@ export default new Router({
       name: 'producto',
       component: () => import(/* webpackChunkName: "producto" */ './views/Producto_detalle.vue')
     },
-
+    {
+      path: '/producto/editar/:Producto_id',
+      name: 'productoEditar',
+      component: () => import(/* webpackChunkName: "productoEditar" */ './views/Producto_editar.vue')
+    },
     {
       path: '/crud',
       name: 'crud',

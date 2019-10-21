@@ -13,23 +13,20 @@
 				<div class="col-lg-6">
                     <div style="padding:10px; position:relative; width:100%; margin:auto !important;">
                         <img class="img-fluid" v-bind:src="Imagen" style="min-width:100%;max-width:100%; object-fit:cover !important; margin:auto !important;">
+                        <input type="file" accept="image/*" v-on:change="seleccionar_image">
                     </div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-                    <h3>{{Nombre}}</h3>
-                    <h2>${{Precio}}</h2>
+                    <h3><input type="text" v-model="Nombre"></h3>
+                    <h2>$ <input type="number" v-model="Precio"></h2>
 						<ul class="list">
-                            <li><a class="active" href="#"><span>Category:</span>{{Categoria}}</a></li>
+                            <li><a class="active" href="#"><span>Category:</span><input type="text" v-model="Categoria"></a></li>
 							<li><a href="#"><span>Availibility:</span>In Stock</a></li>
 						</ul>
-                        <p>{{Descripcion}}</p>
+                        <p><textarea name="" id="" cols="30" rows="5" v-model="Descripcion"></textarea></p>
 						<div class="product_count">
-							<a class="button primary-btn" href="#">Add to Cart</a>               
-						</div>
-						<div class="card_area d-flex align-items-center">
-							<router-link class="icon_btn" v-bind:to="{name: 'productoEditar', params:{Producto_id:Producto_id}}"><i class="lnr lnr lnr-pencil"></i></router-link>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+							<a href="#" class="button primary-btn" @click="Guardar_Cambios">Guardar cambios</a>               
 						</div>
 					</div>
 				</div>
@@ -49,12 +46,13 @@
 
 
 <script>
-import {db} from '../firebase.js'
+import {db,ref} from '../firebase.js'
+import Swal from 'sweetalert';
 export default {
-name:'Producto_detalle',
+name:'Producto_editar',
 data(){
     return{
-        Producto_id:'null',
+        Producto_id: null,
         Imagen:null,
         Nombre:null,
         Precio:null,
@@ -96,7 +94,40 @@ watch: {
                     this.Descripcion = doc.data().Descripcion
                 })
             })
+        },
+
+
+        seleccionar_image(e){
+          const file = e.target.files[0];
+          console.log(file)
+          let selectedFile = ref.child('Productos/'+file.name)
+          selectedFile.put(file).then(response =>{
+            response.ref.getDownloadURL().then((downloadURL) => {  
+              this.Imagen = downloadURL
+            })
+          }).catch(err => console.log(err))  
+        },          
+
+        Guardar_Cambios(){
+            
+            db.collection('Productos').where('Producto_id', '==' , this.$route.params.Producto_id).get().then(querySnapshot =>{
+                querySnapshot.forEach(doc => {
+                    doc.ref.update({
+                        Imagen: this.Imagen,
+                        Nombre: this.Nombre,
+                        Categoria: this.Categoria,
+                        Precio: this.Precio,
+                        Descripcion: this.Descripcion,
+                    })
+                })
+            })
+            
+            Swal({ title: "Producto editado", text: "Tu producto se ha sido editado sin problemas", icon: "success", button: "ok"})
+            
+      
         }
+
+
     },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
