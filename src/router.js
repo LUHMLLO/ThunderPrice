@@ -46,9 +46,9 @@ export default new Router({
     },
 
     {
-      path: '/blog',
-      name: 'blog',
-      component: () => import(/* webpackChunkName: "producto" */ './views/Blog.vue')
+      path: '/crud',
+      name: 'crud',
+      component: () => import(/* webpackChunkName: "crud" */ './views/CRUD.vue')
     },
   ]
 })

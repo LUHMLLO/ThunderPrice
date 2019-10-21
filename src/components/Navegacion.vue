@@ -42,7 +42,7 @@
                   <li class="nav-item"><router-link class="nav-link" to="/login">Login</router-link></li>
                   <li class="nav-item"><router-link class="nav-link" to="/register">Register</router-link></li>
                   <li class="nav-item"><router-link class="nav-link" to="/recovery">Recovery</router-link></li>
-                  <li class="nav-item"><router-link class="nav-link" to="/tracking-order">Tracking</router-link></li>
+                  <li class="nav-item"><router-link class="nav-link" to="/crud">CRUD</router-link></li>
                 </ul>
               </li>
               <li class="nav-item"><router-link class="nav-link" to="/contact">Contact</router-link></li>
