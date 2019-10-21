@@ -40,12 +40,17 @@ export default new Router({
       component: () => import(/* webpackChunkName: "recovery" */ './views/Recovery.vue')
     },
     {
-      path: '/producto/:Producto_id',
-      name: 'producto',
-      component: () => import(/* webpackChunkName: "producto" */ './views/Producto_detalle.vue')
+      path: '/productos/',
+      name: 'productos',
+      component: () => import(/* webpackChunkName: "productos" */ './views/Productos.vue')
     },
     {
-      path: '/producto/editar/:Producto_id',
+      path: '/productos/producto/:Producto_id',
+      name: 'productoDetalle',
+      component: () => import(/* webpackChunkName: "productoDetalle" */ './views/Producto_detalle.vue')
+    },
+    {
+      path: '/productos/producto/editar/:Producto_id',
       name: 'productoEditar',
       component: () => import(/* webpackChunkName: "productoEditar" */ './views/Producto_editar.vue')
     },
