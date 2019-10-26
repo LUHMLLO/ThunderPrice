@@ -59,7 +59,12 @@ export default new Router({
       name: 'crud',
       component: () => import(/* webpackChunkName: "crud" */ './views/CRUD.vue')
     },
-  ]
+  ],
+
+
+
+  
+
 })
 
 

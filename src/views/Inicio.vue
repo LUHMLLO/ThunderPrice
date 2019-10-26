@@ -237,6 +237,14 @@ export default {
         }
     },
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+beforeRouteEnter(to, from, next) {
+  next(vm => {
+      $('.owl-carousel').owlCarousel();
+  })
+},
+
+
     created(){        
 
           db.collection('Productos').get().then((querySnapshot) => {
@@ -252,6 +260,8 @@ export default {
                  this.Productos_Populares.push(data)
             })
           });
+
+          
     },
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
     methods:{       
