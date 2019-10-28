@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from './firebase.js'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
 
   mode: 'history',
   base: process.env.BASE_URL,
@@ -52,12 +53,18 @@ export default new Router({
     {
       path: '/productos/producto/editar/:Producto_id',
       name: 'productoEditar',
-      component: () => import(/* webpackChunkName: "productoEditar" */ './views/Producto_editar.vue')
+      component: () => import(/* webpackChunkName: "productoEditar" */ './views/Producto_editar.vue'),
+      meta: {
+          requiresAuth: true
+      }
     },
     {
       path: '/crud',
       name: 'crud',
-      component: () => import(/* webpackChunkName: "crud" */ './views/CRUD.vue')
+      component: () => import(/* webpackChunkName: "crud" */ './views/CRUD.vue'),
+      meta: {
+          requiresAuth: true
+      }
     },
   ],
 
@@ -67,4 +74,18 @@ export default new Router({
 
 })
 
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const currentUser = firebase.auth().currentUser
+
+  if (requiresAuth && !currentUser) {
+      next('/login')
+  } else if (requiresAuth && currentUser) {
+      next()
+  } else {
+      next()
+  }
+})
+
+export default router
 

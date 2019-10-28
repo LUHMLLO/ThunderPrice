@@ -236,13 +236,14 @@ export default {
             ],
         }
     },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-beforeRouteEnter(to, from, next) {
-  next(vm => {
-      $('.owl-carousel').owlCarousel();
-  })
-},
+    /*eslint-disable */
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+          $('.owl-carousel').owlCarousel();
+      })
+    },
+    /*eslint-enable */
 
 
     created(){        
@@ -263,7 +264,8 @@ beforeRouteEnter(to, from, next) {
 
           
     },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    
     methods:{       
         Funcion_desloguearse: function(){
            Swal({ title: "Cerrando sesion de "+this.usuario , text: "vuelva pronto!", icon: "warning"})
@@ -273,7 +275,8 @@ beforeRouteEnter(to, from, next) {
             )
         },        
     },
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   computed: {
     Productos_Populares_Filter() {
       return this.Productos_Populares
