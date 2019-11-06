@@ -55,7 +55,7 @@
               <li class="nav-item mr-3" v-if="!usuario"><router-link to="login" style="outline:none !important; border:none !important; background:none !important;">Login</router-link></li>
               <li class="nav-item" v-if="!usuario"><router-link to="register" style="outline:none !important; border:none !important; background:none !important;">Register</router-link></li>
 
-              <li class="nav-item" v-if="usuario"><button style="outline:none !important; border:none !important; background:none !important;"><i class="ti-shopping-cart"></i></button> </li>
+              <li class="nav-item" v-if="usuario"><router-link to="carrito" style="color:#22222 !important; outline:none !important; border:none !important; background:none !important;"><i class="ti-shopping-cart"></i></router-link> </li>
               <li class="nav-item" v-if="usuario"></li>
               <li class="nav-item submenu dropdown" v-if="usuario">
                 <button data-toggle="dropdown" class="dropdown-toggle" style="outline:none !important; border:none !important; background:none !important;"><i class="ti-user"></i></button>
