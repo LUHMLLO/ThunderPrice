@@ -98,6 +98,16 @@ export default {
     }
   },
 
+  updated(){
+    let self = this;
+    if(firebase.auth().currentUser){
+        self.usuario = firebase.auth().currentUser.email
+    }
+    else{
+      this.usuario = null
+    }
+  },
+
   methods:{
     Desloguearse: function(){
       Swal({ title: "Cerrando sesion" , text: "Esta seguro que desea cerrar la sesion?", icon: "warning", buttons:["cancelar","cerrar sesion"],})
