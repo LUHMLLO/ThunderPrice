@@ -70,6 +70,30 @@ let router = new Router({
           requiresAuth: true
       }
     },
+    {
+      path: '/Carrito',
+      name: 'carrito',
+      component: () => import(/* webpackChunkName: "carrito" */ './views/Carrito.vue'),
+      meta: {
+          requiresAuth: true
+      }
+    },
+    {
+      path: '/Checkout',
+      name: 'checkout',
+      component: () => import(/* webpackChunkName: "checkout" */ './views/Checkout.vue'),
+      meta: {
+          requiresAuth: true
+      }
+    },
+    {
+      path: '/Confirmation',
+      name: 'confirmation',
+      component: () => import(/* webpackChunkName: "confirmation" */ './views/Confirmation.vue'),
+      meta: {
+          requiresAuth: true
+      }
+    },
   ],
 
 
