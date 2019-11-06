@@ -21,9 +21,13 @@ let router = new Router({
     },
     {
       path: '/',
-      alias: '/inicio',
+      name: 'cover',
+      component: () => import(/* webpackChunkName: "cover" */ './views/Cover.vue')
+    },
+    {
+      path: '/inicio',
       name: 'inicio',
-      component: () => import(/* webpackChunkName: "logeo" */ './views/Inicio.vue')
+      component: () => import(/* webpackChunkName: "inicio" */ './views/Inicio.vue')
     },
     {
       path: '/login',

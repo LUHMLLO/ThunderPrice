@@ -29,7 +29,26 @@
 </template>
 
 <script>
+import {firebase} from '../firebase.js'
 export default {
-  name: 'Header',
+  name: 'Cover',
+  data(){
+    return{
+    }
+  },
+
+
+    /*eslint-disable */
+  mounted(){
+    let self = this;
+    if(firebase.auth().currentUser !== null){
+      this.$router.replace('/inicio')
+    }
+    else{
+      //console.log('nos quedamos');
+    }
+  },
+
+
 }
 </script>

@@ -49,13 +49,18 @@
               <li class="nav-item"><router-link class="nav-link" to="/contact">Contact</router-link></li>
             </ul>
 
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item submenu dropdown">
-                <button data-toggle="dropdown" class="button button-header dropdown-toggle" v-if="usuario">{{usuario}}</button>
-                <div class="dropdown-menu">
-                  <button style="padding:0 12px; margin:auto !important;text-align:center;width:100%;" @click="Desloguearse">Cerrar sesion</button>
+            <ul class="d-flex">
+              <li class="nav-item d-none"><button style="outline:none !important; border:none !important; background:none !important;"><i class="ti-search"></i></button></li>
+
+              <li class="nav-item mr-3" v-if="!usuario"><router-link to="login" style="outline:none !important; border:none !important; background:none !important;">Login</router-link></li>
+              <li class="nav-item" v-if="!usuario"><router-link to="register" style="outline:none !important; border:none !important; background:none !important;">Register</router-link></li>
+
+              <li class="nav-item" v-if="usuario"><button style="outline:none !important; border:none !important; background:none !important;"><i class="ti-shopping-cart"></i></button> </li>
+              <li class="nav-item" v-if="usuario"></li>
+              <li class="nav-item submenu dropdown" v-if="usuario">
+                <button data-toggle="dropdown" class="dropdown-toggle" style="outline:none !important; border:none !important; background:none !important;"><i class="ti-user"></i></button>
+                <div class="dropdown-menu" style="left:auto !important; right:0 !important;">
+                  <button style="outline:none !important; border:none !important; background:none !important; padding:0 12px; margin:auto !important;text-align:center;width:100%;" @click="Desloguearse">Cerrar sesion</button>
                 </div>
               </li>
             </ul>

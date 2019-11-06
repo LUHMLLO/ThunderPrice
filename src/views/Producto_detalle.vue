@@ -25,7 +25,7 @@
 						</ul>
                         <p>{{Descripcion}}</p>
 						<div class="product_count">
-							<a class="button primary-btn" href="#">Add to Cart</a>               
+							<a class="button primary-btn" href="#">Comprar</a>               
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<router-link class="icon_btn" v-bind:to="{name: 'productoEditar', params:{Producto_id:Producto_id}}"><i class="lnr lnr lnr-pencil"></i></router-link>
