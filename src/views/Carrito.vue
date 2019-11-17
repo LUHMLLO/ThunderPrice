@@ -22,8 +22,8 @@
                           <tr v-for="(Productos, index) in Productos_enCarrito" :key="index">
                               <td>
                                   <div class="media">
-                                      <div class="d-flex" style="width:200px; height:150px; overflow:hidden;">
-                                          <img v-bind:src="Productos.Imagen" class="img-fluid">
+                                      <div class="d-flex" style="width:250px; height:180px; overflow:hidden;">
+                                          <img v-bind:src="Productos.Imagen" class="img-fluid" style="object-fit:cover !important;">
                                       </div>
                                       <div class="media-body">
                                           <p>{{Productos.Descripcion}}</p>
@@ -78,33 +78,6 @@
                               </td>
                               <td>
                                   <h5>$2160.00</h5>
-                              </td>
-                          </tr>
-                          <tr class="shipping_area">
-                              <td class="d-none d-md-block">
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                              </td>
-                              <td>
-                                  <div class="shipping_box">
-                                      <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-                                      <select class="shipping_select">
-                                          <option value="1">Bangladesh</option>
-                                          <option value="2">India</option>
-                                          <option value="4">Pakistan</option>
-                                      </select>
-                                      <select class="shipping_select">
-                                          <option value="1">Select a State</option>
-                                          <option value="2">Select a State</option>
-                                          <option value="4">Select a State</option>
-                                      </select>
-                                      <input type="text" placeholder="Postcode/Zipcode">
-                                      <a class="gray_btn" href="#">Update Details</a>
-                                  </div>
                               </td>
                           </tr>
                           <tr class="out_button_area">
