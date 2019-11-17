@@ -29,7 +29,7 @@
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<router-link class="icon_btn" v-bind:to="{name: 'productoEditar', params:{Producto_id:Producto_id}}"><i class="lnr lnr lnr-pencil"></i></router-link>
-							<a class="icon_btn" @click="Agregar_Carrito"><i class="lnr lnr lnr-cart"></i></a>
+							<a class="icon_btn" @click="Agregar_Carrito" style="cursor:pointer;"><i class="lnr lnr lnr-cart"></i></a>
 						</div>
 					</div>
 				</div>

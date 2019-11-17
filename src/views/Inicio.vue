@@ -43,10 +43,10 @@
           <div class="col-md-6 col-lg-4 col-xl-3" v-for="(Producto , index) in Productos_Populares" v-bind:key="index">
             <div class="card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" v-bind:src="Producto.Imagen" alt="">
-                <ul class="card-product__imgOverlay">
+                <img class="card-img" v-bind:src="Producto.Imagen">
+                <ul class="card-product__imgOverlay d-none">
                   <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
+                  <li><button @click="Agregar_Carrito"><i class="ti-shopping-cart"></i></button></li>
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
@@ -93,11 +93,6 @@
           <div class="card text-center card-product" v-for="(Producto , index) in Productos_MasVendidos" v-bind:key="index">
             <div class="card-product__img">
               <img class="img-fluid" v-bind:src="Producto.Imagen" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
             </div>
             <div class="card-body">
               <p>{{Producto.Categoria}}</p>
@@ -213,6 +208,14 @@ export default {
               {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
               {'Imagen':'', 'Categoria':'categoria va aqui', 'Nombre':'nombre provisional', 'Precio':'123'},
             ],
+
+            Producto_id:null,
+            Imagen:null,
+            Nombre:null,
+            Categoria:null,
+            Descripcion:null,
+            Precio:null,
+            Cantidad: 1,
         }
     },
 
@@ -253,6 +256,29 @@ export default {
                }
             )
         },        
+
+        Agregar_Carrito(){
+            let self = this;
+
+            db.collection('Carrito').add({
+            })
+            .then(function(docRef) {
+
+                      db.collection('Carrito').doc(docRef.id).set({
+                        id: docRef.id,
+                        Producto_id: self.Producto_id,
+                        Imagen: self.Imagen,
+                        Nombre: self.Nombre,
+                        Categoria: self.Categoria,
+                        Precio: self.Precio,
+                        Descripcion: self.Descripcion,
+                        Cantidad: self.Cantidad,
+                      })              
+
+                Swal({ title: "Producto agregado al carrito", text: "Tu producto se ha sigo agregado a tu carrito", icon: "success", buttons: "ok"})
+            })
+            .catch(error => console.log(error))
+        },
     },
 
 
