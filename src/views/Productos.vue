@@ -100,23 +100,25 @@
           <section class="lattest-product-area pb-40 category-list">
             <div class="row">
 
-              <div class="col-md-6 col-lg-4"  v-for="(Producto , index) in Productos" v-bind:key="index">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <img class="card-img" v-bind:src="Producto.Imagen" alt="">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>{{Producto.Categoria}}</p>
-                    <h4 class="card-product__title"><router-link v-bind:to="{name: 'productoDetalle', params:{Producto_id:Producto.id}}">{{Producto.Nombre}}</router-link></h4>
-                    <p class="card-product__price">${{Producto.Precio}}</p>
-                  </div>
-                </div>
-              </div>
+                <div class="col-md-6 col-lg-4 col-xl-3" v-for="(Producto , index) in Productos" v-bind:key="index">
+                  <router-link v-bind:to="{name: 'productoDetalle', params:{Producto_id:Producto.id}}">
+                    <div class="card text-center card-product">
+                      <div class="card-product__img">
+                        <img class="card-img" v-bind:src="Producto.Imagen">
+                        <ul class="card-product__imgOverlay d-none">
+                          <li><button><i class="ti-search"></i></button></li>
+                          <li><button @click="Agregar_Carrito"><i class="ti-shopping-cart"></i></button></li>
+                          <li><button><i class="ti-heart"></i></button></li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <p>{{Producto.Categoria}}</p>
+                        <h4 class="card-product__title">{{Producto.Nombre}}</h4>
+                        <p class="card-product__price">${{Producto.Precio}}</p>
+                      </div>
+                    </div>
+                  </router-link>
+                </div><!---producto plus link--->
 
             </div>
           </section>
