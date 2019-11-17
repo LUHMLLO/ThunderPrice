@@ -29,7 +29,7 @@
 						</div>
 						<div class="card_area d-flex align-items-center">
 							<router-link class="icon_btn" v-bind:to="{name: 'productoEditar', params:{Producto_id:Producto_id}}"><i class="lnr lnr lnr-pencil"></i></router-link>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+							<a class="icon_btn" @click="Agregar_Carrito"><i class="lnr lnr lnr-cart"></i></a>
 						</div>
 					</div>
 				</div>
@@ -49,7 +49,8 @@
 
 
 <script>
-import {db} from '../firebase.js'
+import {db} from '../firebase.js';
+import Swal from 'sweetalert';
 export default {
 name:'Producto_detalle',
 data(){
@@ -96,7 +97,33 @@ watch: {
                     this.Descripcion = doc.data().Descripcion
                 })
             })
-        }
+        },
+
+
+
+        Agregar_Carrito(){
+            let self = this;
+
+            db.collection('Carrito').add({
+            })
+            .then(function(docRef) {
+
+                      db.collection('Carrito').doc(docRef.id).set({
+                        Producto_id: self.Producto_id,
+                        Imagen: self.Imagen,
+                        Nombre: self.Nombre,
+                        Categoria: self.Categoria,
+                        Precio: self.Precio,
+                        Descripcion: self.Descripcion,
+                        Cantidad: 1,
+                      })              
+
+                Swal({ title: "Producto agregado al carrito", text: "Tu producto se ha sigo agregado a tu carrito", icon: "success", buttons: "ok"})
+            })
+            .catch(error => console.log(error))
+        },
+        
+        
     },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };

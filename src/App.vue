@@ -12,7 +12,7 @@
 
 
 <script>
-/* eslint no-use-before-define: 0 */  // --> OFF
+/* eslint no-use-before-define: 0 */
 export default {
   components:{
     BarraDeNavegacion: () => import('./components/Navegacion.vue'),

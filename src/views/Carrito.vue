@@ -19,19 +19,19 @@
                       </thead>
                       <tbody>
 
-                          <tr>
+                          <tr v-for="(Productos, index) in Productos_enCarrito" :key="index">
                               <td>
                                   <div class="media">
-                                      <div class="d-flex">
-                                          <img src="../assets/img/cart/cart2.png" alt="">
+                                      <div class="d-flex" style="width:200px; height:150px; overflow:hidden;">
+                                          <img v-bind:src="Productos.Imagen" class="img-fluid">
                                       </div>
                                       <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
+                                          <p>{{Productos.Descripcion}}</p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                  <h5>$360.00</h5>
+                                  <h5>${{Productos.Precio}}</h5>
                               </td>
                               <td>
                                   <div class="product_count">
@@ -44,7 +44,7 @@
                                   </div>
                               </td>
                               <td>
-                                  <h5>$720.00</h5>
+                                  <h5>${{Productos.Precio * Productos.Cantidad}}</h5>
                               </td>
                           </tr>
 
@@ -119,8 +119,8 @@
                               </td>
                               <td>
                                   <div class="checkout_btn_inner d-flex align-items-center">
-                                      <a class="gray_btn" href="#">Continue Shopping</a>
-                                      <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                      <router-link to="/productos" class="gray_btn">Continue Shopping</router-link>
+                                      <router-link to="/checkout" class="primary-btn ml-2">Proceed to checkout</router-link>
                                   </div>
                               </td>
                           </tr>
@@ -138,7 +138,33 @@
 </template>
 
 <script>
+import {db} from '../firebase.js';
 export default {
-    name: 'Carrito'
+    name: 'Carrito',
+    data(){
+        return{
+            Productos_enCarrito:[],
+        }
+    },
+
+        created(){        
+
+          db.collection('Carrito').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) =>{
+              //console.log(doc.data())
+                 const data ={
+                   'Producto_id': doc.data().Producto_id,
+                   'Imagen': doc.data().Imagen,
+                   'Nombre': doc.data().Nombre,
+                   'Categoria': doc.data().Categoria,
+                   'Precio': doc.data().Precio,
+                   'Descripcion': doc.data().Descripcion,
+                 }
+                 this.Productos_enCarrito.push(data)
+            })
+          });
+
+          
+    },
 }
 </script>
