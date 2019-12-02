@@ -13,8 +13,8 @@
                           <tr>
                               <th scope="col">Product</th>
                               <th scope="col">Price</th>
+                              <th scope="col">Quantity</th>
                               <th scope="col">Total</th>
-                              <th scope="col">Borrar</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -34,15 +34,23 @@
                                   <h5>${{Productos.Precio}}</h5>
                               </td>
                               <td>
-                                  <h5>${{parseFloat(Productos.Precio)*parseFloat(Productos.Cantidad)}}</h5>
+                                  <div class="product_count">
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                          class="input-text qty">
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                  </div>
                               </td>
                               <td>
-                                  <i class="lnr lnr lnr-trash" style="cursor:pointer;" @click="Borrar_item(Productos.Producto_id)"></i>
+                                  <h5>${{Productos.Precio * Productos.Cantidad}}</h5>
                               </td>
                           </tr>
 
                           <tr class="bottom_button">
                               <td>
+                                  <a class="button" href="#">Update Cart</a>
                               </td>
                               <td>
 
@@ -54,7 +62,7 @@
                                   <div class="cupon_text d-flex align-items-center">
                                       <input type="text" placeholder="Coupon Code">
                                       <a class="primary-btn" href="#">Apply</a>
-                                      <a class="button" href="#">Coupon?</a>
+                                      <a class="button" href="#">Have a Coupon?</a>
                                   </div>
                               </td>
                           </tr>
@@ -69,7 +77,7 @@
                                   <h5>Subtotal</h5>
                               </td>
                               <td>
-                                  <h5>${{total}}</h5>
+                                  <h5>$2160.00</h5>
                               </td>
                           </tr>
                           <tr class="out_button_area">
@@ -84,8 +92,8 @@
                               </td>
                               <td>
                                   <div class="checkout_btn_inner d-flex align-items-center">
-                                      <router-link to="/productos" class="gray_btn">Seguir comprando</router-link>
-                                      <router-link to="/checkout" class="primary-btn ml-2">Realizar compra</router-link>
+                                      <router-link to="/productos" class="gray_btn">Continue Shopping</router-link>
+                                      <router-link to="/checkout" class="primary-btn ml-2">Proceed to checkout</router-link>
                                   </div>
                               </td>
                           </tr>
@@ -103,19 +111,18 @@
 </template>
 
 <script>
-import {firebase,db} from '../firebase.js';
+import {db} from '../firebase.js';
 export default {
     name: 'Carrito',
     data(){
         return{
             Productos_enCarrito:[],
-            Total:[],
         }
     },
 
-    
-    created(){
-          db.collection('Carrito').where('Usuario_id','==', firebase.auth().currentUser.uid).get().then((querySnapshot) => {
+        created(){        
+
+          db.collection('Carrito').get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
               //console.log(doc.data())
                  const data ={
@@ -125,36 +132,12 @@ export default {
                    'Categoria': doc.data().Categoria,
                    'Precio': doc.data().Precio,
                    'Descripcion': doc.data().Descripcion,
-                   'Cantidad': doc.data().Cantidad,
                  }
                  this.Productos_enCarrito.push(data)
-                 this.Total.push(parseInt(data.Precio)*parseInt(data.Cantidad))
-                 //console.log(this.Total);
             })
-          });      
+          });
+
+          
     },
-
-    methods:{
-        Borrar_item: function(Producto_id){
-            console.log(Producto_id)
-            db.collection('Carrito').where('Producto_id', '==' , Producto_id).get().then(querySnapshot =>{
-                querySnapshot.forEach(doc => {
-                    doc.ref.delete();
-                })
-            })
-        }
-    },
-
-  computed: {
-    total: function(){
-        return this.Total.reduce(function(total, item){
-        return total + item; 
-    },0);
-  }
-  }
-
-
-
-
 }
 </script>

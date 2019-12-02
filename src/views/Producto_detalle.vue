@@ -15,7 +15,7 @@
                         <img class="img-fluid" v-bind:src="Imagen" style="min-width:100%;max-width:100%; object-fit:cover !important; margin:auto !important;">
                     </div>
 				</div>
-				<div class="col-lg-5 offset-lg-1">
+				<div class="col-lg-6">
 					<div class="s_product_text">
                     <h3>{{Nombre}}</h3>
                     <h2>${{Precio}}</h2>
@@ -25,10 +25,9 @@
 						</ul>
                         <p>{{Descripcion}}</p>
 						<div class="product_count">
-							<router-link to="/carrito" class="button primary-btn" href="#">Comprar</router-link>               
+							<a href="#" class="button primary-btn" @click="Comprar">Comprar</a>               
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<router-link class="icon_btn" v-bind:to="{name: 'productoEditar', params:{Producto_id:Producto_id}}"><i class="lnr lnr lnr-pencil"></i></router-link>
 							<a class="icon_btn" @click="Agregar_Carrito" style="cursor:pointer;"><i class="lnr lnr lnr-cart"></i></a>
 						</div>
 					</div>
@@ -49,7 +48,7 @@
 
 
 <script>
-import {db} from '../firebase.js';
+import {firebase, db} from '../firebase.js';
 import Swal from 'sweetalert';
 export default {
 name:'Producto_detalle',
@@ -61,6 +60,9 @@ data(){
         Precio:null,
         Categoria:null,
         Descripcion:null,
+        Publicador_id: null,
+        SePuedeEditar: false,
+        Usuario: firebase.auth().currentUser.uid,
     }
 },
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +77,7 @@ beforeRouteEnter(to, from, next){
                 vm.Imagen = doc.data().Imagen
                 vm.Categoria = doc.data().Categoria
                 vm.Descripcion = doc.data().Descripcion
+                vm.Publicador_id = doc.data().Publicador_id
             })
         })
     })
@@ -95,13 +98,41 @@ watch: {
                     this.Imagen = doc.data().Imagen
                     this.Categoria = doc.data().Categoria
                     this.Descripcion = doc.data().Descripcion
+                    this.Publicador_id = doc.data().Publicador_id
+
+                    if(this.Usuario == doc.data().Publicador_id){
+                        this.SePuedeEditar = true
+                    }
                 })
-            })
+            });
         },
 
 
 
         Agregar_Carrito(){
+            let self = this;
+            db.collection('Carrito').add({
+            })
+            .then(function(docRef) {
+
+                      db.collection('Carrito').doc(docRef.id).set({
+                        Producto_id: self.Producto_id,
+                        Imagen: self.Imagen,
+                        Nombre: self.Nombre,
+                        Categoria: self.Categoria,
+                        Precio: self.Precio,
+                        Descripcion: self.Descripcion,
+                        Cantidad: 1,
+                        Usuario_id: firebase.auth().currentUser.uid,
+                      })              
+
+                Swal({ title: "Producto agregado al carrito", text: "Tu producto se ha sigo agregado a tu carrito", icon: "success", buttons: "ok"})
+                      .then(() =>{self.$router.go('carrito')})
+            })
+            .catch(error => console.log(error))
+        },
+
+        Comprar(){
             let self = this;
 
             db.collection('Carrito').add({
@@ -116,9 +147,9 @@ watch: {
                         Precio: self.Precio,
                         Descripcion: self.Descripcion,
                         Cantidad: 1,
-                      })              
-
-                Swal({ title: "Producto agregado al carrito", text: "Tu producto se ha sigo agregado a tu carrito", icon: "success", buttons: "ok"})
+                        Usuario_id: firebase.auth().currentUser.uid,
+                      })
+                      .then(() =>{self.$router.go('carrito')})
             })
             .catch(error => console.log(error))
         },
