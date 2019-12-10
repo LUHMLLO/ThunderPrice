@@ -8,13 +8,13 @@
   <section class="order_details section-margin--small">
     <div class="container">
       <div class="row mb-5" v-for="(ReciboItem, index) in Recibo" :key="index">
-        <div class="col-md-4 col-xl-4">
+        <div class="col-md-5 col-xl-5">
           <div class="confirmation-card">
             <h3 class="billing-title">Order Info</h3>
             <table class="order-rable">
               <tr>
-                <td>Order number</td>
-                <td>: 60235</td>
+                <td>Order id</td>
+                <td>: {{ReciboItem.Recibo_id}}</td>
               </tr>
               <tr>
                 <td>Date</td>
@@ -26,12 +26,12 @@
               </tr>
               <tr>
                 <td>Payment method</td>
-                <td>: Check payments</td>
+                <td>: Demo</td>
               </tr>
             </table>
           </div>
         </div>
-        <div class="col-md-8 col-xl-8">
+        <div class="col-md-7 col-xl-7">
           <div class="confirmation-card table-responsive">
                 <h3 class="billing-title">Order Details</h3>
                   <table class="table">
@@ -43,15 +43,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr v-for="(Detail, index ) in ReciboItem.Recibo_Detalles" :key="index">
                         <td>
-                          <p>Pixelstore fresh Blackberry</p>
+                          <p>{{Detail.Nombre}}</p>
                         </td>
                         <td>
-                          <h5>x 02</h5>
+                          <h5>{{Detail.Cantidad}}</h5>
                         </td>
                         <td>
-                          <p>$720.00</p>
+                          <p>${{Detail.Precio}}</p>
                         </td>
                       </tr>
                     </tbody>
@@ -80,6 +80,7 @@ export default {
     data(){
         return{
             Recibo:[],
+            Detalles:[],
         }
     },
 
@@ -87,15 +88,17 @@ export default {
     created(){
           db.collection('Recibos').where('Comprador_id','==', firebase.auth().currentUser.uid).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) =>{
-              //console.log(doc.data())
                  const data ={
-                   'Recibo_id': doc.data().Recibo_Total,
+                   'Recibo_id': doc.data().Recibo_id,
                    'Recibo_Total': doc.data().Total,
+                   'Recibo_Detalles': doc.data().Detalles,
                  }
                  this.Recibo.push(data)
             })
-          });      
+          });
     },
+
+
 
 }
 </script>
